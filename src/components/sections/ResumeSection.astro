@@ -1,0 +1,146 @@
+---
+import SkillGroup from '@components/ui/SkillGroup.astro';
+import TimelineItem from '@components/ui/TimelineItem.astro';
+import {
+  personalInfo,
+  skillsData,
+  experienceData,
+  educationData,
+} from '@utils/data';
+---
+
+<section id="resume" class="resumeSection">
+  <header class="sectionHeader">
+    <h2 class="sectionTitle">Currículum</h2>
+    <p class="sectionSubtitle">Tecnologías, experiencia y formación.</p>
+  </header>
+
+  <!-- Skills -->
+  <div class="block">
+    <h3 class="blockTitle">Tecnologías</h3>
+    <div class="skillsGrid">
+      {skillsData.map((group) => (
+        <SkillGroup group={group} />
+      ))}
+    </div>
+  </div>
+
+  <!-- Experiencia -->
+  <div class="block">
+    <h3 class="blockTitle">Experiencia</h3>
+    <div class="timeline">
+      {experienceData.map((exp) => (
+        <TimelineItem
+          title={exp.role}
+          subtitle={exp.company}
+          period={exp.period}
+          description={exp.description}
+        />
+      ))}
+    </div>
+  </div>
+
+  <!-- Educación -->
+  <div class="block">
+    <h3 class="blockTitle">Educación</h3>
+    <div class="timeline">
+      {educationData.map((edu) => (
+        <TimelineItem
+          title={edu.title}
+          subtitle={edu.institution}
+          period={edu.period}
+        />
+      ))}
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <a href={personalInfo.cvLink} download class="cvButton">
+      Descargar CV en PDF
+    </a>
+  </div>
+</section>
+
+<style>
+  .resumeSection {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    scroll-margin-top: 2rem;
+  }
+
+  .sectionHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+  .sectionSubtitle {
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+  .block {
+    margin-bottom: 3.5rem;
+  }
+
+  .blockTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 1.5rem;
+    padding-left: 0.75rem;
+    border-left: 3px solid #7dd3fc;
+  }
+
+  .skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+
+  .cvButton {
+    padding: 0.9rem 2rem;
+    border-radius: 999px;
+    background: rgba(125, 211, 252, 0.15);
+    border: 1px solid rgba(125, 211, 252, 0.4);
+    color: #7dd3fc;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .cvButton:hover {
+    background: rgba(125, 211, 252, 0.25);
+    box-shadow: 0 0 25px rgba(125, 211, 252, 0.35);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 640px) {
+    .resumeSection {
+      padding: 3rem 1.25rem;
+    }
+    .sectionTitle {
+      font-size: 1.8rem;
+    }
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  period: string;
+  description?: string;
+}
+
+const { title, subtitle, period, description } = Astro.props;
+---
+
+<div class="timelineItem">
+  <div class="timelineDot" />
+  <div class="timelineContent glass-effect">
+    <span class="period">{period}</span>
+    <h4 class="title">{title}</h4>
+    <p class="subtitle">{subtitle}</p>
+    {description && <p class="description">{description}</p>}
+  </div>
+</div>
+
+<style>
+  .timelineItem {
+    position: relative;
+    padding-left: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  /* La línea vertical */
+  .timelineItem::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      rgba(125, 211, 252, 0.4),
+      rgba(125, 211, 252, 0)
+    );
+  }
+
+  .timelineItem:last-child::before {
+    display: none;
+  }
+
+  .timelineDot {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #7dd3fc;
+    box-shadow: 0 0 12px rgba(125, 211, 252, 0.6);
+  }
+
+  .timelineContent {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .period {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #7dd3fc;
+    background: rgba(125, 211, 252, 0.1);
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+  }
+
+  .title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #f8fafc;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 0.15rem;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+  }
+</style>

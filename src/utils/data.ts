@@ -1,4 +1,3 @@
-// Definimos tipos para que TypeScript nos ayude
 export interface Project {
   id: number;
   name: string;
@@ -7,45 +6,90 @@ export interface Project {
   technologies: string[];
 }
 
-export interface Skill {
-  name: string;
-  icon: string; // Nombre del archivo en assets/icons
+export interface SkillGroup {
+  category: string;
+  items: string[];
 }
 
-// Datos de ejemplo (luego los cambias por los tuyos)
+export interface Experience {
+  id: number;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+export interface Education {
+  id: number;
+  title: string;
+  institution: string;
+  period: string;
+}
+
+export const personalInfo = {
+  name: 'Tu Nombre',
+  role: 'Desarrollador Full Stack',
+  description: 'Apasionado por crear interfaces limpias y funcionales.',
+  cvLink: '/cv.pdf',
+};
+
 export const projectsData: Project[] = [
   {
     id: 1,
-    name: "Portfolio Personal",
-    description: "Mi sitio web personal construido con Astro y React.",
-    link: "https://github.com/tu-usuario/portfolio",
-    technologies: ["Astro", "React", "CSS"]
+    name: 'Portfolio Personal',
+    description: 'Mi sitio web personal construido con Astro y React.',
+    link: 'https://github.com/tu-usuario/portfolio',
+    technologies: ['Astro', 'React', 'CSS'],
   },
   {
     id: 2,
-    name: "App de Tareas",
-    description: "Una aplicación para gestionar tareas diarias.",
-    link: "#",
-    technologies: ["React", "Node.js", "MongoDB"]
+    name: 'App de Tareas',
+    description: 'Una aplicación para gestionar tareas diarias.',
+    link: '#',
+    technologies: ['React', 'Node.js', 'MongoDB'],
+  },
+];
+
+// Ahora agrupamos por categoría (más limpio visualmente)
+export const skillsData: SkillGroup[] = [
+  {
+    category: 'Frontend',
+    items: ['React', 'Astro', 'TypeScript', 'Tailwind', 'CSS'],
   },
   {
-    id: 3,
-    name: "Herramienta comparativa",
-    description: "Esta herramienta esta diseñada para comparar diferentes motos, para tomar la mejor elección",
-    link: "#",
-    technologies: ["Próximamente"]
-  }
+    category: 'Backend',
+    items: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL'],
+  },
+  {
+    category: 'Herramientas',
+    items: ['Git', 'Docker', 'Vite', 'Figma'],
+  },
 ];
 
-export const skillsData: Skill[] = [
-  { name: "React", icon: "react.svg" },
-  { name: "Astro", icon: "astro.svg" },
-  { name: "TypeScript", icon: "typescript.svg" }
+export const experienceData: Experience[] = [
+  {
+    id: 1,
+    role: 'Desarrollador Full Stack',
+    company: 'Empresa XYZ',
+    period: '2023 - Presente',
+    description:
+      'Desarrollo de aplicaciones web con React y Node.js. Lideré la migración a Astro mejorando el rendimiento en un 40%.',
+  },
+  {
+    id: 2,
+    role: 'Desarrollador Frontend',
+    company: 'Startup ABC',
+    period: '2021 - 2023',
+    description:
+      'Construcción de interfaces con React y TypeScript. Implementación de design system interno.',
+  },
 ];
 
-export const personalInfo = {
-  name: "Tu Nombre",
-  role: "Desarrollador Full Stack",
-  description: "Apasionado por crear interfaces limpias y funcionales.",
-  cvLink: "/cv.pdf" // Pon tu PDF en la carpeta public
-};
+export const educationData: Education[] = [
+  {
+    id: 1,
+    title: 'Tecnólogo en análisis y desarrollo de software',
+    institution: 'Sena',
+    period: '2024 - 2026',
+  },
+];
