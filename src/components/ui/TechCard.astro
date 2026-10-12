@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Technology } from '@utils/data';
+
+interface Props {
+  skill: Technology;
+}
+
+const { skill } = Astro.props;
+---
+
+<div class="techCard glass-effect">
+  <Icon name={skill.icon} class="techIcon" />
+  <span class="techName">{skill.name}</span>
+</div>
+
+<style>
+  .techCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1rem 0.75rem;
+    border-radius: 0.85rem;
+    transition: transform 0.25s ease, border-color 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .techCard:hover {
+    transform: translateY(-4px);
+    border-color: rgba(125, 211, 252, 0.35);
+    background: rgba(125, 211, 252, 0.06);
+  }
+
+  .techIcon {
+    width: 32px;
+    height: 32px;
+    color: #7dd3fc;
+    transition: color 0.25s ease;
+  }
+
+  .techCard:hover .techIcon {
+    color: #a5e0fd;
+  }
+
+  .techName {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #cbd5e1;
+    text-align: center;
+  }
+</style>

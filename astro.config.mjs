@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
+import icon from 'astro-icon';
 import path from 'node:path';
 
 export default defineConfig({
-  integrations: [react()],
+  integrations: [react(), icon({ iconDir: 'src/assets/icons' })],
   vite: {
     resolve: {
       alias: {

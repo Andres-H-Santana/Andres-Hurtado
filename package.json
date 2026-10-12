@@ -13,9 +13,11 @@
   },
   "dependencies": {
     "@astrojs/react": "^7.0.1",
+    "@iconify-json/simple-icons": "^1.2.100",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "astro": "^7.3.3",
+    "astro-icon": "^1.2.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
