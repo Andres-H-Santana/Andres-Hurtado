@@ -1,9 +1,14 @@
+import type { ImageMetadata } from 'astro';
+import vsImg from '@assets/images/vs.jpg';
+
 export interface Project {
   id: number;
   name: string;
   description: string;
   link: string;
   technologies: string[];
+  image?: ImageMetadata;
+  altText?: string;
 }
 
 export interface SkillGroup {
@@ -35,18 +40,23 @@ export const personalInfo = {
 
 export const projectsData: Project[] = [
   {
+
     id: 1,
     name: 'Portfolio Personal',
     description: 'Mi sitio web personal construido con Astro y React.',
     link: 'https://github.com/tu-usuario/portfolio',
     technologies: ['Astro', 'React', 'CSS'],
+    image: vsImg,
+    altText: 'Vista previa de herramienta comparativa de precios de vehiculos',
   },
   {
     id: 2,
-    name: 'App de Tareas',
-    description: 'Una aplicación para gestionar tareas diarias.',
+    name: 'Herramienta Comparativa de Precios de Vehículos',
+    description: 'Una aplicación web que permite comparar precios de vehículos de diferentes referencias.',
     link: '#',
     technologies: ['React', 'Node.js', 'MongoDB'],
+    image: vsImg,
+    altText: 'Vista previa de herramienta comparativa de precios de vehiculos',
   },
 ];
 
