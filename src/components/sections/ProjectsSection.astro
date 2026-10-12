@@ -1,0 +1,59 @@
+---
+import Card from '@components/ui/Card.astro';
+import { projectsData } from '@utils/data';
+---
+
+<section id="projects" class="projectsSection">
+  <header class="sectionHeader">
+    <h2 class="sectionTitle">Proyectos</h2>
+    <p class="sectionSubtitle">
+      Una selección de trabajos recientes.
+    </p>
+  </header>
+
+  <div class="projectsGrid">
+    {projectsData.map((project) => (
+      <Card project={project} />
+    ))}
+  </div>
+</section>
+
+<style>
+.projectsSection {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    scroll-margin-top: 2rem;
+  }
+
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+.sectionTitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+  }
+
+.sectionSubtitle {
+    color: #94a3b8;
+    font-size: 1rem;
+  }
+
+.projectsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+@media (max-width: 640px) {
+    .projectsSection {
+      padding: 3rem 1.25rem;
+    }
+    .sectionTitle {
+      font-size: 1.8rem;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import Layout           from '@layouts/Layout.astro';
+import Navbar           from '@components/ui/Navbar.tsx';
+import Hero             from '@components/sections/Hero.astro';
+import ProjectsSection  from '@components/sections/ProjectsSection.astro';
+---
+
+<Layout title="My Porfolio">
+	<Hero />
+	<ProjectsSection />
+	<Navbar client:load />
+</Layout>
