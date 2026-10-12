@@ -32,10 +32,13 @@ export interface Education {
 }
 
 export const personalInfo = {
-  name: 'Tu Nombre',
+  name: 'Andres Hurtado',
   role: 'Desarrollador Full Stack',
-  description: 'Apasionado por crear interfaces limpias y funcionales.',
+  description: 'Hola. Como desarrollador Full Stack, me apasiona crear interfaces limpias, minimalistas y modernas. Enfoco cada proyecto bajo una arquitectura escalable y modular, priorizando la estructura y el orden. Me considero una persona adaptable, en constante aprendizaje y convencido de que un nuevo reto siempre es una oportunidad de crecimiento. Busco aportar valor real a través de un desarrollo eficiente con tecnologías modernas.',
   cvLink: '/cv.pdf',
+  gmail: 'andresfelipesantana53@gmail.com',
+  github: 'https://github.com/Andres-H-Santana',
+  linkedin: 'https://www.linkedin.com/in/andres-santana-498a9b343/'
 };
 
 export const projectsData: Project[] = [
