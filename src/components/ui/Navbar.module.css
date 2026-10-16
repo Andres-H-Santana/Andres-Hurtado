@@ -6,49 +6,24 @@
   z-index: 1000;
 
   display: flex;
-  gap: 0.5rem;
-  padding: 0.6rem;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  max-width: calc(100vw - 1rem);
 
-  /* Glassmorfismo */
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* Glassmorfismo (variables de global.css) */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: 999px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--glass-shadow);
 }
 
-.navButton {
-  background: transparent;
-  border: none;
-  color: #94a3b8;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-}
-
-.navButton:hover {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.active {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
-}
-
+/* 5 botones: se compactan en pantallas pequeñas */
 @media (max-width: 480px) {
   .navbar {
     bottom: 1rem;
-    padding: 0.4rem;
-  }
-  .navButton {
-    padding: 0.5rem 0.9rem;
-    font-size: 0.8rem;
+    padding: 0.35rem;
+    gap: 0.1rem;
   }
 }

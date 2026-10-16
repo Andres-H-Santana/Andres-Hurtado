@@ -4,14 +4,15 @@ interface Props {
   subtitle: string;
   period: string;
   description?: string;
+  card?: boolean;
 }
 
-const { title, subtitle, period, description } = Astro.props;
+const { title, subtitle, period, description, card = false } = Astro.props;
 ---
 
-<div class="timelineItem">
+<div class:list={['timelineItem', { 'timelineItem--card': card }]}>
   <div class="timelineDot" />
-  <div class="timelineContent glass-effect">
+  <div class="timelineContent">
     <span class="period">{period}</span>
     <h4 class="title">{title}</h4>
     <p class="subtitle">{subtitle}</p>
@@ -34,11 +35,7 @@ const { title, subtitle, period, description } = Astro.props;
     top: 8px;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(
-      to bottom,
-      rgba(125, 211, 252, 0.4),
-      rgba(125, 211, 252, 0)
-    );
+    background: var(--bg-sky);
   }
 
   .timelineItem:last-child::before {
@@ -52,19 +49,43 @@ const { title, subtitle, period, description } = Astro.props;
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #7dd3fc;
-    box-shadow: 0 0 12px rgba(125, 211, 252, 0.6);
+    background: var(--bg-warm);
   }
 
   .timelineContent {
     padding: 1.25rem 1.5rem;
   }
 
+  .timelineItem--card {
+    padding: 0;
+  }
+
+  .timelineItem--card::before,
+  .timelineItem--card .timelineDot {
+    display: none;
+  }
+
+  .timelineItem--card .timelineContent {
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(235, 143, 90, 0.22);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.38);
+    box-shadow: 0 8px 22px rgba(116, 89, 68, 0.07);
+    transition: transform 0.2s ease, box-shadow 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .timelineItem--card:hover .timelineContent {
+    transform: translateY(-2px);
+    border-color: rgba(235, 143, 90, 0.42);
+    box-shadow: 0 12px 28px rgba(116, 89, 68, 0.11);
+  }
+
   .period {
     display: inline-block;
     font-size: 0.75rem;
-    color: #7dd3fc;
-    background: rgba(125, 211, 252, 0.1);
+    color: var(--text-secondary);
+    background: var(--bg-soft);
     padding: 0.2rem 0.7rem;
     border-radius: 999px;
     margin-bottom: 0.6rem;
@@ -73,19 +94,29 @@ const { title, subtitle, period, description } = Astro.props;
   .title {
     font-size: 1.05rem;
     font-weight: 600;
-    color: #f8fafc;
+    color: var(--text-primary);
   }
 
   .subtitle {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: var(--text-secondary);
     margin-top: 0.15rem;
   }
 
   .description {
     font-size: 0.9rem;
-    color: #cbd5e1;
+    color: var(--text-secondary);
     line-height: 1.6;
     margin-top: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .timelineContent {
+      padding: 1rem 0.75rem;
+    }
+
+    .timelineItem--card .timelineContent {
+      padding: 1.1rem;
+    }
   }
 </style>

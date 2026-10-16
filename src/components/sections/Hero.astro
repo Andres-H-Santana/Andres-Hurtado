@@ -4,29 +4,26 @@ import perfilImg from '@assets/images/perfil.png';
 ---
 
 <section id="hero" class="hero">
-  <div class="heroContent glass-effect">
-    <!-- Columna izquierda: foto -->
+  <div class="heroContent">
     <div class="heroMedia">
       <img
         src={perfilImg.src}
         alt={`Foto de ${personalInfo.name}`}
         class="profilePhoto"
-        width="250"
-        height="250"
+        width="300"
+        height="300"
       />
     </div>
 
-    <!-- Columna derecha: info -->
     <div class="heroInfo">
       <h1 class="name">{personalInfo.name}</h1>
       <p class="role">{personalInfo.role}</p>
-      <p class="description">{personalInfo.description}</p>
+      <p class="description">{personalInfo.summary}</p>
+      <p class="aboutText">{personalInfo.about}</p>
 
-      <div class="block" id="contact">
-        <a href="#contact" class="button button--primary">Contactame</a>
-        <a href={personalInfo.cvLink} download class="button button--ghost">
-          Descargar CV
-        </a>
+      <div class="actions">
+        <a href="#projects" class="nav-button">Ver proyectos</a>
+        <a href={personalInfo.cvLink} download class="nav-button">Descargar CV</a>
       </div>
     </div>
   </div>
@@ -45,14 +42,13 @@ import perfilImg from '@assets/images/perfil.png';
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;   /* ← foto ↔ info a extremos */
-    gap: 0;
-    padding: 2.5rem 3rem;
-    max-width: 1100px;                 /* ← un pelín más ancho para que respire */
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    max-width: 1100px;
     width: 100%;
   }
 
-  /* Columna izquierda */
   .heroMedia {
     flex-shrink: 0;
   }
@@ -62,43 +58,56 @@ import perfilImg from '@assets/images/perfil.png';
     height: 300px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 40px rgba(120, 180, 255, 0.25);
+    border: 3px solid var(--bg-sky);
     display: block;
   }
 
-  /* Columna derecha */
   .heroInfo {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
     text-align: left;
-    max-width: 500px;                 /* ← evita que el texto se estire demasiado */
+    max-width: 560px;
   }
 
   .name {
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    line-height: 1.15;
     font-weight: 700;
-    color: #f8fafc;
+    color: var(--text-primary);
     margin: 0;
   }
 
   .role {
-    color: #7dd3fc;
-    font-weight: 500;
+    color: var(--bg-warm);
+    font-weight: 700;
     letter-spacing: 0.5px;
     margin: 0;
   }
 
   .description {
-    color: #94a3b8;
-    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
     line-height: 1.6;
     margin: 0.5rem 0 0;
+    text-align: justify;
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
-  /* Botones en fila */
+  .aboutText {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.8;
+    margin-top: 0.5rem;
+    text-align: justify;
+    hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
   .actions {
     display: flex;
     flex-wrap: wrap;
@@ -106,48 +115,11 @@ import perfilImg from '@assets/images/perfil.png';
     margin-top: 1.25rem;
   }
 
-  .button {
-    padding: 0.75rem 1.6rem;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-    display: inline-block;
-  }
-
-  .button--primary {
-    background: rgba(125, 211, 252, 0.15);
-    border-color: rgba(125, 211, 252, 0.4);
-    color: #7dd3fc;
-  }
-
-  .button--primary:hover {
-    background: rgba(125, 211, 252, 0.25);
-    box-shadow: 0 0 20px rgba(125, 211, 252, 0.3);
-    transform: translateY(-2px);
-  }
-
-  .button--ghost {
-    background: transparent;
-    border-color: rgba(255, 255, 255, 0.15);
-    color: #94a3b8;
-  }
-
-  .button--ghost:hover {
-    color: #f8fafc;
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-2px);
-  }
-
-  /* Responsive: en móvil se apila de nuevo */
   @media (max-width: 640px) {
     .heroContent {
       flex-direction: column;
       text-align: center;
-      padding: 2rem 1.5rem;
+      padding: 2rem 0;
       gap: 1.5rem;
       justify-content: center;
     }

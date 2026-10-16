@@ -1,14 +1,16 @@
 :root {
-  /* Paleta de colores base */
-  --bg-color: #0f172a; /* Azul muy oscuro */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  
-  /* Variables para Glassmorfismo */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --glass-blur: blur(12px);
+  --bg-color: #f7efe6;
+  --bg-soft: #f5d1b7;
+  --bg-accent: #f5cf99;
+  --bg-warm: #eb8f5a;
+  --bg-sky: #bfe1f4;
+  --text-primary: #2d2d2d;
+  --text-secondary: #5a5a5a;
+  --glass-bg: rgba(255, 255, 255, 0.28);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-shadow: 0 12px 32px rgba(116, 89, 68, 0.12);
+  --glass-blur: blur(14px);
+  --glass-button-hover: rgba(245, 209, 183, 0.24);
 }
 
 * {
@@ -17,16 +19,17 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
   font-family: system-ui, -apple-system, sans-serif;
   min-height: 100vh;
-  /* Fondo con un gradiente sutil para que el glassmorfismo resalte */
-  background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
 }
 
-/* Clase utilitaria para el efecto Glass */
 .glass-effect {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
@@ -34,4 +37,47 @@ body {
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: 16px;
+}
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-button:hover {
+  background: var(--glass-button-hover);
+  color: var(--text-primary);
+}
+
+.nav-button:focus-visible {
+  outline: 2px solid var(--bg-warm);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .nav-button {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-button {
+    padding: 0.45rem 0.5rem;
+    font-size: 0.72rem;
+  }
 }

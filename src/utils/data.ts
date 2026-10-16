@@ -3,7 +3,6 @@ import vsImg from '@assets/images/vs.jpg';
 
 // ─── Interfaces ──────────────────────────────────────────────
 export interface Project {
-  id: number;
   name: string;
   description: string;
   link: string;
@@ -13,7 +12,6 @@ export interface Project {
 }
 
 export interface Experience {
-  id: number;
   role: string;
   company: string;
   period: string;
@@ -21,7 +19,6 @@ export interface Experience {
 }
 
 export interface Education {
-  id: number;
   title: string;
   institution: string;
   period: string;
@@ -29,11 +26,23 @@ export interface Education {
 
 export interface Technology {
   name: string;
-  icon: string; // nombre del icono en simple-icons
+  icon: string; // formato de astro-icon: 'simple-icons:nombre'
 }
 
-export interface SoftSkill {
+export interface KeyIconData {
+  name: string;
+  body: string; // contenido del <svg> tomado de simple-icons
+  width: number;
+  height: number;
+}
+
+export interface Skill {
   label: string;
+}
+
+export interface Language {
+  name: string;
+  level: string;
 }
 
 export interface ContactLink {
@@ -43,11 +52,20 @@ export interface ContactLink {
   icon: string;
 }
 
+export interface NavItem {
+  id: string; // id de la sección a la que apunta
+  label: string;
+}
+
 // ─── Datos personales ────────────────────────────────────────
 export const personalInfo = {
-  name: 'Andres Hurtado',
+  name: 'Andres Felipe Hurtado Santana',
   role: 'Desarrollador Full Stack',
-  description:
+  // Texto corto que se muestra en el Hero
+  summary:
+    'Creo interfaces limpias, minimalistas y modernas, con una arquitectura escalable y modular.',
+  // Texto completo de la sección "Quién soy"
+  about:
     'Hola. Como desarrollador Full Stack, me apasiona crear interfaces limpias, minimalistas y modernas. Enfoco cada proyecto bajo una arquitectura escalable y modular, priorizando la estructura y el orden. Me considero una persona adaptable, en constante aprendizaje y convencido de que un nuevo reto siempre es una oportunidad de crecimiento. Busco aportar valor real a través de un desarrollo eficiente con tecnologías modernas.',
   cvLink: '/cv.pdf',
   gmail: 'andresfelipesantana53@gmail.com',
@@ -55,10 +73,16 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/andres-santana-498a9b343/',
 };
 
+// ─── Navegación (orden = orden de las secciones en la página) ─
+export const navItemsData: NavItem[] = [
+  { id: 'hero', label: 'Inicio' },
+  { id: 'projects', label: 'Proyectos' },
+  { id: 'resume', label: 'CV' },
+];
+
 // ─── Proyectos ───────────────────────────────────────────────
 export const projectsData: Project[] = [
   {
-    id: 1,
     name: 'Portfolio Personal',
     description:
       'Mi sitio web personal construido con Astro y React.',
@@ -68,7 +92,6 @@ export const projectsData: Project[] = [
     altText: 'Vista previa del portfolio personal',
   },
   {
-    id: 2,
     name: 'Vesus Motors',
     description:
       'Una herramienta diseñada para el mercado colombiano que ayuda a los usuarios a tomar la mejor decisión al comprar una motocicleta. Va más allá del precio, permitiendo comparar aspectos clave como costos de repuestos, kilometraje y rendimiento, todo en un solo lugar.',
@@ -82,7 +105,6 @@ export const projectsData: Project[] = [
 // ─── Experiencia ─────────────────────────────────────────────
 export const experienceData: Experience[] = [
   {
-    id: 1,
     role: 'Analista de Datos / Desarrollador',
     company: 'Almacontact',
     period: '6 meses',
@@ -92,32 +114,29 @@ export const experienceData: Experience[] = [
 ];
 
 // ─── Habilidades ─────────────────────────────────────────────
-export const softSkillsData: SoftSkill[] = [
-  { label: 'Amable' },
-  { label: 'Adaptable' },
-  { label: 'Responsable' },
-  { label: 'Respetuoso' },
-  { label: 'Comunicativo' },
-  { label: 'Escucha activa' },
-  { label: 'Analítico' },
-  { label: 'Trabajo en equipo' },
+export const softSkillsData: Skill[] = [
   { label: 'Resolución de problemas' },
-  { label: 'Proactivo' },
-  { label: 'Gestión del tiempo' },
+  { label: 'Pensamiento analítico' },
+  { label: 'Trabajo en equipo' },
+  { label: 'Comunicación' },
+  { label: 'Adaptabilidad' },
   { label: 'Aprendizaje continuo' },
 ];
 
-export const hardSkillsData: SoftSkill[] = [
+// Antes "hard skills": ahora agrupadas como herramientas de productividad
+export const toolsData: Skill[] = [
   { label: 'Manejo de herramientas ofimáticas' },
   { label: 'Herramientas IA' },
   { label: 'Canva' },
   { label: 'Microsoft Teams' },
   { label: 'Outlook' },
-  { label: 'Inglés A1' },
+];
+
+export const languagesData: Language[] = [
+  { name: 'Inglés', level: 'A1' },
 ];
 
 export const technologiesData: Technology[] = [
-  { name: 'SQL', icon: 'simple-icons:mysql' },
   { name: 'Python', icon: 'simple-icons:python' },
   { name: 'JavaScript', icon: 'simple-icons:javascript' },
   { name: 'TypeScript', icon: 'simple-icons:typescript' },
@@ -131,12 +150,14 @@ export const technologiesData: Technology[] = [
   { name: 'Docker', icon: 'simple-icons:docker' },
   { name: 'n8n', icon: 'simple-icons:n8n' },
   { name: 'Cloudflare', icon: 'simple-icons:cloudflare' },
+  { name: '.Net', icon: 'simple-icons:dotnet' },
+  { name: 'Flutter', icon: 'simple-icons:flutter' },
+  { name: 'Dart', icon: 'simple-icons:dart' },
 ];
 
 // ─── Estudios ────────────────────────────────────────────────
 export const educationData: Education[] = [
   {
-    id: 1,
     title: 'Tecnólogo en análisis y desarrollo de software',
     institution: 'Sena',
     period: '2024 - 2026',

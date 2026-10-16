@@ -6,23 +6,31 @@ interface Props {
 const { label } = Astro.props;
 ---
 
-<span class="chip">{label}</span>
+<span class="chip">
+  <span class="chipMark" aria-hidden="true">✓</span>
+  {label}
+</span>
 
 <style>
   .chip {
-    display: inline-block;
-    padding: 0.4rem 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     font-size: 0.82rem;
     font-weight: 500;
-    color: #cbd5e1;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 999px;
-    transition: background 0.2s ease, border-color 0.2s ease;
+    color: var(--text-secondary);
   }
 
-  .chip:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(125, 211, 252, 0.3);
+  .chipMark {
+    display: inline-grid;
+    place-items: center;
+    width: 0.95rem;
+    height: 0.95rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--bg-warm);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
   }
 </style>

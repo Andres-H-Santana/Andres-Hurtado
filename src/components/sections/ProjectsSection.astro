@@ -1,15 +1,14 @@
 ---
 import Card from '@components/ui/Card.astro';
+import SectionHeader from '@components/ui/SectionHeader.astro';
 import { projectsData } from '@utils/data';
 ---
 
 <section id="projects" class="projectsSection">
-  <header class="sectionHeader">
-    <h2 class="sectionTitle">Proyectos</h2>
-    <p class="sectionSubtitle">
-      Una selección de trabajos recientes.
-    </p>
-  </header>
+  <SectionHeader
+    title="Proyectos"
+    subtitle="Una selección de trabajos recientes."
+  />
 
   <div class="projectsGrid">
     {projectsData.map((project) => (
@@ -20,40 +19,33 @@ import { projectsData } from '@utils/data';
 
 <style>
 .projectsSection {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-    scroll-margin-top: 2rem;
-  }
-
-.sectionHeader {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-.sectionTitle {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #f8fafc;
-    margin-bottom: 0.5rem;
-  }
-
-.sectionSubtitle {
-    color: #94a3b8;
-    font-size: 1rem;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  scroll-margin-top: 2rem;
+}
 
 .projectsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
 }
-@media (max-width: 640px) {
-    .projectsSection {
-      padding: 3rem 1.25rem;
-    }
-    .sectionTitle {
-      font-size: 1.8rem;
-    }
+
+@media (max-width: 760px) {
+  .projectsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+@media (max-width: 560px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .projectsSection {
+    padding: 3rem 1.25rem;
+  }
+}
 </style>

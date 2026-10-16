@@ -1,15 +1,28 @@
 ---
-import Layout           from '@layouts/Layout.astro';
-import Navbar           from '@components/ui/Navbar.tsx';
-import Hero             from '@components/sections/Hero.astro';
-import ProjectsSection  from '@components/sections/ProjectsSection.astro';
-import ResumeSection    from '@components/sections/ResumeSection.astro';
+import Layout from '@layouts/Layout.astro';
+import Navbar from '@components/ui/Navbar.tsx';
+import Hero from '@components/sections/Hero.astro';
+import ProjectsSection from '@components/sections/ProjectsSection.astro';
+import ResumeSection from '@components/sections/ResumeSection.astro';
+import { personalInfo, navItemsData } from '@utils/data';
 
+const pageTitle = `${personalInfo.name} | ${personalInfo.role}`;
 ---
 
-<Layout title="My Porfolio">
-	<Hero />
-	<ProjectsSection />
-	<ResumeSection />
-	<Navbar client:load />
+<Layout title={pageTitle} description={personalInfo.summary}>
+  <Navbar items={navItemsData} />
+
+  <main class="page-shell">
+    <Hero />
+    <ProjectsSection />
+    <ResumeSection />
+  </main>
 </Layout>
+
+<style>
+  .page-shell {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding-bottom: 5rem;
+  }
+</style>

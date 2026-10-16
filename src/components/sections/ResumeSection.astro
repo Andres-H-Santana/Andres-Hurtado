@@ -1,166 +1,237 @@
 ---
 import TimelineItem from '@components/ui/TimelineItem.astro';
 import SkillChip from '@components/ui/SkillChip.astro';
-import TechCard from '@components/ui/TechCard.astro';
+import TechKeyboard from '@components/ui/TechKeyboard';
+import { getKeyIcons } from '@utils/iconData';
 import ContactCard from '@components/ui/ContactCard.astro';
+import SectionHeader from '@components/ui/SectionHeader.astro';
 import {
-  personalInfo,
   experienceData,
   softSkillsData,
-  hardSkillsData,
+  toolsData,
+  languagesData,
   technologiesData,
   educationData,
   contactData,
 } from '@utils/data';
+
+const keyIcons = getKeyIcons(technologiesData);
+
+const languageProgress: Record<string, number> = {
+  A1: 20,
+  A2: 35,
+  B1: 50,
+  B2: 65,
+  C1: 80,
+  C2: 100,
+};
 ---
 
 <section id="resume" class="resumeSection">
-  <header class="sectionHeader">
-    <h2 class="sectionTitle">Currículum</h2>
-    <p class="sectionSubtitle">Experiencia, habilidades y formación.</p>
-  </header>
+  <SectionHeader title="Currículum" subtitle="Experiencia, habilidades y formación." />
 
-  <!-- 1. Experiencia -->
-  <div class="block">
-    <h3 class="blockTitle">Experiencia</h3>
-    <div class="timeline">
-      {experienceData.map((exp) => (
-        <TimelineItem
-          title={exp.role}
-          subtitle={exp.company}
-          period={exp.period}
-          description={exp.description}
-        />
-      ))}
+  <div class="cvLayout">
+    <div class="mainColumn">
+      <div class="block">
+        <h3 class="blockTitle">Habilidades</h3>
+
+        <h4 class="subBlockTitle">Blandas</h4>
+        <div class="chipsGrid">
+          {softSkillsData.map((skill) => (
+            <SkillChip label={skill.label} />
+          ))}
+        </div>
+
+        <h4 class="subBlockTitle">Herramientas</h4>
+        <div class="chipsGrid">
+          {toolsData.map((tool) => (
+            <SkillChip label={tool.label} />
+          ))}
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="blockTitle">Tecnologías</h3>
+        <TechKeyboard client:visible keys={keyIcons} />
+      </div>
+
+      <div class="block">
+        <h3 class="blockTitle">Experiencia</h3>
+        <div class="timeline">
+          {experienceData.map((exp) => (
+            <TimelineItem
+              card
+              title={exp.role}
+              subtitle={exp.company}
+              period={exp.period}
+              description={exp.description}
+            />
+          ))}
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- 2. Habilidades -->
-  <div class="block">
-    <h3 class="blockTitle">Habilidades</h3>
+    <aside class="sideColumn">
+      <div class="block" id="contact">
+        <h3 class="blockTitle">Contacto</h3>
+        <div class="contactGrid">
+          {contactData.map((contact) => (
+            <ContactCard contact={contact} />
+          ))}
+        </div>
+      </div>
 
-    <h4 class="subBlockTitle">Blandas</h4>
-    <div class="chipsGrid">
-      {softSkillsData.map((skill) => (
-        <SkillChip label={skill.label} />
-      ))}
-    </div>
+      <div class="block">
+        <h3 class="blockTitle">Estudios</h3>
+        <div class="timeline">
+          {educationData.map((edu) => (
+            <TimelineItem
+              card
+              title={edu.title}
+              subtitle={edu.institution}
+              period={edu.period}
+            />
+          ))}
+        </div>
+      </div>
 
-    <h4 class="subBlockTitle">Duras</h4>
-    <div class="chipsGrid">
-      {hardSkillsData.map((skill) => (
-        <SkillChip label={skill.label} />
-      ))}
-    </div>
-
-    <h4 class="subBlockTitle">Tecnologías</h4>
-    <div class="techGrid">
-      {technologiesData.map((skill) => (
-        <TechCard skill={skill} />
-      ))}
-    </div>
-  </div>
-
-  <!-- 3. Estudios -->
-  <div class="block">
-    <h3 class="blockTitle">Estudios</h3>
-    <div class="timeline">
-      {educationData.map((edu) => (
-        <TimelineItem
-          title={edu.title}
-          subtitle={edu.institution}
-          period={edu.period}
-        />
-      ))}
-    </div>
-  </div>
-
-  <!-- 4. Contacto -->
-  <div class="block">
-    <h3 class="blockTitle">Contacto</h3>
-    <div class="contactGrid">
-      {contactData.map((contact) => (
-        <ContactCard contact={contact} />
-      ))}
-    </div>
-  </div>
-
-  <!-- CTA final -->
-  <div class="cta">
-    <a href={personalInfo.cvLink} download class="cvButton">
-      Descargar CV en PDF
-    </a>
+      <div class="block">
+        <h3 class="blockTitle">Idiomas</h3>
+        <div class="languageList">
+          {languagesData.map((language) => (
+            <div class="languageItem">
+              <div class="languageInfo">
+                <span class="languageName">{language.name}</span>
+                <span class="languageLevel">{language.level}</span>
+              </div>
+              <div
+                class="languageProgress"
+                role="meter"
+                aria-label={`${language.name}: nivel ${language.level}`}
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow={languageProgress[language.level] ?? 0}
+              >
+                <span
+                  class="languageProgressFill"
+                  style={`--progress: ${languageProgress[language.level] ?? 0}%`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </aside>
   </div>
 </section>
 
 <style>
   .resumeSection {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 5rem 2rem;
+    padding: 5rem 2rem 6rem;
     scroll-margin-top: 2rem;
   }
 
-  .sectionHeader {
-    text-align: center;
-    margin-bottom: 3rem;
+  .cvLayout {
+    display: grid;
+    grid-template-columns: minmax(0, 68fr) minmax(250px, 32fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
   }
 
-  .sectionTitle {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #f8fafc;
-    margin-bottom: 0.5rem;
-  }
-
-  .sectionSubtitle {
-    color: #94a3b8;
-    font-size: 1rem;
+  .mainColumn,
+  .sideColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .block {
-    margin-bottom: 3.5rem;
+    margin-bottom: 0;
+  }
+
+  .sideColumn .block + .block {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--bg-soft);
   }
 
   .blockTitle {
     font-size: 1.3rem;
-    font-weight: 600;
-    color: #f8fafc;
-    margin-bottom: 1.5rem;
-    padding-left: 0.75rem;
-    border-left: 3px solid #7dd3fc;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
   }
 
   .subBlockTitle {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #7dd3fc;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--bg-warm);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin: 1.5rem 0 0.85rem;
+    letter-spacing: 0.08em;
+    margin: 1.25rem 0 0.85rem;
   }
 
   .chipsGrid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .techGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 0.85rem;
+    flex-direction: column;
+    gap: 0.65rem;
   }
 
   .timeline {
     display: flex;
     flex-direction: column;
+    gap: 0.75rem;
   }
 
   .contactGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .languageList {
+    display: grid;
     gap: 1rem;
+  }
+
+  .languageItem {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .languageInfo {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-inline: 0.75rem;
+  }
+
+  .languageName {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .languageLevel {
+    color: var(--bg-warm);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  .languageProgress {
+    height: 0.55rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--bg-soft);
+  }
+
+  .languageProgressFill {
+    display: block;
+    width: var(--progress);
+    height: 100%;
+    border-radius: inherit;
+    background: var(--bg-warm);
   }
 
   .cta {
@@ -169,33 +240,33 @@ import {
     margin-top: 3rem;
   }
 
-  .cvButton {
-    padding: 0.9rem 2rem;
-    border-radius: 999px;
-    background: rgba(125, 211, 252, 0.15);
-    border: 1px solid rgba(125, 211, 252, 0.4);
-    color: #7dd3fc;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
+  @media (max-width: 900px) {
+    .cvLayout {
+      grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr);
+    }
   }
 
-  .cvButton:hover {
-    background: rgba(125, 211, 252, 0.25);
-    box-shadow: 0 0 25px rgba(125, 211, 252, 0.35);
-    transform: translateY(-2px);
+  @media (max-width: 720px) {
+    .cvLayout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .sideColumn {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: 1.5rem;
+    }
+
+    .sideColumn .block + .block {
+      padding-top: 0;
+      border-top: 0;
+    }
   }
 
   @media (max-width: 640px) {
     .resumeSection {
-      padding: 3rem 1.25rem;
-    }
-    .sectionTitle {
-      font-size: 1.8rem;
-    }
-    .techGrid {
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      padding: 3rem 1.25rem 4rem;
     }
   }
 </style>
