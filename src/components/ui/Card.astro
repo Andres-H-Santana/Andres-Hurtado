@@ -8,7 +8,6 @@ interface Props {
 }
 
 const { project } = Astro.props;
-
 ---
 
 <article class="project-card" data-scroll-reveal>
@@ -116,15 +115,13 @@ const { project } = Astro.props;
     right: 0;
     bottom: 0;
     left: 0;
-    min-height: 9.5rem;
     padding: 1.2rem 1.35rem 1.35rem;
-    overflow: hidden;
     border-top: 1px solid var(--glass-border);
     background: var(--glass-surface);
     box-shadow: 0 -1rem 2.75rem rgba(0, 0, 0, 0.24);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
-    transition: min-height 420ms cubic-bezier(0.2, 0.75, 0.2, 1);
+    /* Sin transición de altura — el layout se mantiene estable */
   }
 
   .panel-handle {
@@ -153,14 +150,19 @@ const { project } = Astro.props;
     color: var(--text-primary);
   }
 
+  /* El detalle se oculta con una fila de grid 0fr -> 1fr.
+     Esto mantiene el flujo ordenado y no rompe el layout. */
   .project-details {
-    max-height: 0;
-    margin-top: 0;
-    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;
     opacity: 0;
-    transform: translateY(14px);
-    transition: max-height 420ms cubic-bezier(0.2, 0.75, 0.2, 1), margin 420ms ease,
-      opacity 240ms ease, transform 320ms ease;
+    transition: grid-template-rows 380ms cubic-bezier(0.2, 0.75, 0.2, 1),
+      opacity 240ms ease;
+  }
+
+  .project-details > * {
+    overflow: hidden;
+    min-height: 0;
   }
 
   .project-details p {
@@ -182,6 +184,7 @@ const { project } = Astro.props;
     align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
+    padding-bottom: 0.1rem;
   }
 
   .icon-button,
@@ -236,19 +239,12 @@ const { project } = Astro.props;
     outline-offset: 3px;
   }
 
+  /* Interacción solo en dispositivos con hover real */
   @media (hover: hover) {
-    .project-card:hover .project-panel,
-    .project-card:focus-within .project-panel {
-      min-height: 21rem;
-    }
-
     .project-card:hover .project-details,
     .project-card:focus-within .project-details {
-      max-height: 16rem;
-      margin-top: 1rem;
+      grid-template-rows: 1fr;
       opacity: 1;
-      transform: translateY(0);
-      transition-delay: 60ms;
     }
 
     .project-card:hover .project-image,
@@ -257,14 +253,16 @@ const { project } = Astro.props;
     }
   }
 
+  /* En móvil el detalle queda siempre visible y ordenado */
   @media (max-width: 520px) {
-    .project-card { height: 28rem; border-radius: 1.3rem; }
-    .project-panel { min-height: 19rem; }
+    .project-card {
+      height: 28rem;
+      border-radius: 1.3rem;
+    }
+
     .project-details {
-      max-height: 14rem;
-      margin-top: 1rem;
+      grid-template-rows: 1fr;
       opacity: 1;
-      transform: none;
     }
   }
 
