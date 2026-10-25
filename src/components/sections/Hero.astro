@@ -1,28 +1,27 @@
 ---
 import { personalInfo } from '@utils/data';
-import perfilImg from '@assets/images/perfil.png';
+import perfilNight from '@assets/images/perfil.png';
 ---
 
 <section id="hero" class="hero">
   <div class="heroContent">
-    <div class="heroMedia">
+    <div class="heroMedia" data-scroll-reveal="hero-media">
       <img
-        src={perfilImg.src}
-        alt={`Foto de ${personalInfo.name}`}
+        src={perfilNight.src}
+        alt={`Ilustración de perfil de ${personalInfo.name}`}
         class="profilePhoto"
         width="300"
         height="300"
       />
     </div>
 
-    <div class="heroInfo">
+    <div class="heroInfo" data-scroll-reveal="hero-info">
       <h1 class="name">{personalInfo.name}</h1>
       <p class="role">{personalInfo.role}</p>
       <p class="description">{personalInfo.summary}</p>
       <p class="aboutText">{personalInfo.about}</p>
 
       <div class="actions">
-        <a href="#projects" class="nav-button">Ver proyectos</a>
         <a href={personalInfo.cvLink} download class="nav-button">Descargar CV</a>
       </div>
     </div>
@@ -31,7 +30,7 @@ import perfilImg from '@assets/images/perfil.png';
 
 <style>
   .hero {
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,8 +57,8 @@ import perfilImg from '@assets/images/perfil.png';
     height: 300px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--bg-sky);
     display: block;
+    box-shadow: 0 20px 48px rgba(74, 58, 46, 0.16);
   }
 
   .heroInfo {
@@ -111,6 +110,8 @@ import perfilImg from '@assets/images/perfil.png';
   .actions {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
     gap: 0.75rem;
     margin-top: 1.25rem;
   }

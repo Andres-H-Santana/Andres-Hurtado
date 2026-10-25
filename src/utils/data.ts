@@ -127,9 +127,7 @@ export const softSkillsData: Skill[] = [
 export const toolsData: Skill[] = [
   { label: 'Manejo de herramientas ofimáticas' },
   { label: 'Herramientas IA' },
-  { label: 'Canva' },
-  { label: 'Microsoft Teams' },
-  { label: 'Outlook' },
+  { label: 'Colaboración y diseño digital' },
 ];
 
 export const languagesData: Language[] = [

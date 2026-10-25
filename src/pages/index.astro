@@ -1,5 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import ContactFooter from '@components/sections/ContactFooter.astro';
 import Navbar from '@components/ui/Navbar.tsx';
 import Hero from '@components/sections/Hero.astro';
 import ProjectsSection from '@components/sections/ProjectsSection.astro';
@@ -16,6 +17,7 @@ const pageTitle = `${personalInfo.name} | ${personalInfo.role}`;
     <Hero />
     <ProjectsSection />
     <ResumeSection />
+	<ContactFooter />
   </main>
 </Layout>
 
