@@ -6,6 +6,7 @@ export interface Project {
   name: string;
   description: string;
   link: string;
+  github?: string;
   technologies: string[];
   image?: ImageMetadata;
   altText?: string;
@@ -63,7 +64,7 @@ export const personalInfo = {
   role: 'Desarrollador Full Stack',
   // Texto corto que se muestra en el Hero
   summary:
-    'Creo interfaces limpias, minimalistas y modernas, con una arquitectura escalable y modular.',
+    'Desarrollador Full Stack, me gusta crear interfaces limpias, minimalistas y modernas, con una arquitectura escalable y modular.',
   // Texto completo de la sección "Quién soy"
   about:
     'Hola. Como desarrollador Full Stack, me apasiona crear interfaces limpias, minimalistas y modernas. Enfoco cada proyecto bajo una arquitectura escalable y modular, priorizando la estructura y el orden. Me considero una persona adaptable, en constante aprendizaje y convencido de que un nuevo reto siempre es una oportunidad de crecimiento. Busco aportar valor real a través de un desarrollo eficiente con tecnologías modernas.',
@@ -77,7 +78,7 @@ export const personalInfo = {
 export const navItemsData: NavItem[] = [
   { id: 'hero', label: 'Inicio' },
   { id: 'projects', label: 'Proyectos' },
-  { id: 'resume', label: 'CV' },
+  { id: 'resume', label: 'Sobre mí' },
 ];
 
 // ─── Proyectos ───────────────────────────────────────────────

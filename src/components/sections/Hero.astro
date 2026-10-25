@@ -19,7 +19,6 @@ import perfilNight from '@assets/images/perfil.png';
       <h1 class="name">{personalInfo.name}</h1>
       <p class="role">{personalInfo.role}</p>
       <p class="description">{personalInfo.summary}</p>
-      <p class="aboutText">{personalInfo.about}</p>
 
       <div class="actions">
         <a href={personalInfo.cvLink} download class="nav-button">Descargar CV</a>
@@ -90,17 +89,6 @@ import perfilNight from '@assets/images/perfil.png';
     font-size: 1rem;
     line-height: 1.6;
     margin: 0.5rem 0 0;
-    text-align: justify;
-    hyphens: none;
-    overflow-wrap: normal;
-    word-break: normal;
-  }
-
-  .aboutText {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-    line-height: 1.8;
-    margin-top: 0.5rem;
     text-align: justify;
     hyphens: none;
     overflow-wrap: normal;

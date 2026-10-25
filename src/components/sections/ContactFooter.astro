@@ -3,6 +3,7 @@ import ContactCard from '@components/ui/ContactCard.astro';
 import { contactData, personalInfo } from '@utils/data';
 
 const year = new Date().getFullYear();
+const footerContacts = contactData.filter((contact) => !contact.href.includes('github.com'));
 ---
 
 <footer id="contact" class="contactFooter" data-scroll-reveal>
@@ -13,7 +14,7 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="contactRow">
-      {contactData.map((contact) => (
+      {footerContacts.map((contact) => (
         <ContactCard contact={contact} />
       ))}
     </div>
@@ -70,4 +71,4 @@ const year = new Date().getFullYear();
       padding: 2.5rem 1.25rem 1.5rem;
     }
   }
-</style>    
+</style>
