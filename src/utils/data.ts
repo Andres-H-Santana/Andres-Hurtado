@@ -78,7 +78,7 @@ export const personalInfo = {
 export const navItemsData: NavItem[] = [
   { id: 'hero', label: 'Inicio' },
   { id: 'projects', label: 'Proyectos' },
-  { id: 'resume', label: 'Sobre mí' },
+  { id: 'resume', label: '¿Quién soy?' },
 ];
 
 // ─── Proyectos ───────────────────────────────────────────────
@@ -128,7 +128,7 @@ export const softSkillsData: Skill[] = [
 export const toolsData: Skill[] = [
   { label: 'Manejo de herramientas ofimáticas' },
   { label: 'Herramientas IA' },
-  { label: 'Colaboración y diseño digital' },
+  { label: 'Herramientas de colaboración y diseño digital' },
 ];
 
 export const languagesData: Language[] = [
@@ -145,7 +145,6 @@ export const technologiesData: Technology[] = [
   { name: 'GitHub', icon: 'simple-icons:github' },
   { name: 'MySQL', icon: 'simple-icons:mysql' },
   { name: 'Vite', icon: 'simple-icons:vite' },
-  { name: 'Docker', icon: 'simple-icons:docker' },
   { name: 'Cloudflare', icon: 'simple-icons:cloudflare' },
   { name: '.Net', icon: 'simple-icons:dotnet' },
   { name: 'Flutter', icon: 'simple-icons:flutter' },

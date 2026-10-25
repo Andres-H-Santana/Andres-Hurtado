@@ -26,7 +26,7 @@ const languageProgress: Record<string, number> = {
 
 <section id="resume" class="resumeSection" data-scroll-reveal>
   <SectionHeader
-    title="Sobre mí"
+    title="Quién soy"
     subtitle="Un vistazo a mi experiencia, habilidades y formación."
   />
 
@@ -94,6 +94,14 @@ const languageProgress: Record<string, number> = {
 
     <aside class="sideColumn">
       <div class="block" data-scroll-reveal>
+        <h3 class="blockTitle">Sobre mí</h3>
+        <div class="aboutText">
+          <p>Hola. Soy un desarrollador apasionado por la tecnología y la constante innovación. Me defino como una persona proactiva, analítica y muy curiosa; siempre estoy intrigado por lo nuevo y buscando activamente cómo aplicarlo en mis desarrollos.</p>
+          <p>Fuera del código, soy una persona muy activa: disfruto del deporte, la danza y perderme en la belleza de los paisajes. En el frontend, tengo claros mis principios: me encanta el minimalismo y el glassmorphism, pero siempre estoy dispuesto a explorar nuevas tendencias. Al final, este sector nos obliga a mantenernos en constante actualización, y eso es justo lo que más me gusta.</p>
+        </div>
+      </div>
+
+      <div class="block" data-scroll-reveal>
         <h3 class="blockTitle">Estudios</h3>
         <div class="timeline">
           {educationData.map((edu) => (
@@ -147,7 +155,7 @@ const languageProgress: Record<string, number> = {
 
   .cvLayout {
     display: grid;
-    grid-template-columns: minmax(0, 68fr) minmax(250px, 32fr);
+    grid-template-columns: minmax(0, 64fr) minmax(250px, 36fr);
     gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
   }
@@ -169,6 +177,14 @@ const languageProgress: Record<string, number> = {
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 1.25rem;
+  }
+
+  .aboutText {
+    display: grid;
+    gap: 0.9rem;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.7;
   }
 
   .subBlockTitle {
