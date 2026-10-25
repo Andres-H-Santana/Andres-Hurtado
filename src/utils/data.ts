@@ -138,7 +138,6 @@ export const languagesData: Language[] = [
 export const technologiesData: Technology[] = [
   { name: 'Python', icon: 'simple-icons:python' },
   { name: 'JavaScript', icon: 'simple-icons:javascript' },
-  { name: 'TypeScript', icon: 'simple-icons:typescript' },
   { name: 'Node.js', icon: 'simple-icons:nodedotjs' },
   { name: 'Astro', icon: 'simple-icons:astro' },
   { name: 'React', icon: 'simple-icons:react' },
@@ -147,7 +146,6 @@ export const technologiesData: Technology[] = [
   { name: 'MySQL', icon: 'simple-icons:mysql' },
   { name: 'Vite', icon: 'simple-icons:vite' },
   { name: 'Docker', icon: 'simple-icons:docker' },
-  { name: 'n8n', icon: 'simple-icons:n8n' },
   { name: 'Cloudflare', icon: 'simple-icons:cloudflare' },
   { name: '.Net', icon: 'simple-icons:dotnet' },
   { name: 'Flutter', icon: 'simple-icons:flutter' },
