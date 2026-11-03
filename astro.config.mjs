@@ -4,6 +4,8 @@ import icon from 'astro-icon';
 import path from 'node:path';
 
 export default defineConfig({
+  site: 'https://Andres-H-Santana.github.io/Andres-Hurtado/',
+  base: '/Andres-Hurtado',
   integrations: [react(), icon({ iconDir: 'src/assets/icons' })],
   vite: {
     resolve: {
